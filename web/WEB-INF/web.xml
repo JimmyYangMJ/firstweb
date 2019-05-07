@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--配置全局配置信息-->
+    <context-param>
+        <param-name>namespace01</param-name>
+        <param-value>0101明杰</param-value>
+    </context-param>
+
+    <!-- 过滤器声明 -->
+    <filter>
+        <filter-name>CountFilter</filter-name><!-- 过滤器的名称 -->
+        <filter-class>Filter.CountFilter</filter-class><!-- 过滤器的完整类名 -->
+        <!-- 设置初始化参数 -->
+        <init-param>   <!--局部配置-->
+            <param-name>count</param-name><!-- 参数名 -->
+            <param-value>5000</param-value><!-- 参数值 -->
+        </init-param>
+    </filter>
+    <filter-mapping>  <!-- 过滤器映射 -->
+        <!-- 过滤器名称 -->
+        <filter-name>CountFilter</filter-name>
+        <!-- 过滤器URL映射 -->
+        <url-pattern>/Filter_CountFilter.jsp</url-pattern>
+    </filter-mapping>
+
+    <!--使用HttpServlet-->
+    <servlet>
+        <servlet-name>MyServlet</servlet-name>
+        <servlet-class>java01_servlet.MyServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>MyServlet</servlet-name>
+        <url-pattern>/servlet/MyServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--使用Servlet-->
+    <servlet>
+        <servlet-name>WordServlet</servlet-name>
+        <servlet-class>java01_servlet.WordServlet</servlet-class>
+        <!--<load-on-startup>2</load-on-startup> &lt;!&ndash;Servlet启动时调用构造方法&ndash;&gt;-->
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>WordServlet</servlet-name>
+        <!--映射1：任何以.do 结尾都可以访问--><!--<url-pattern>*.do</url-pattern> -->
+        <!--映射2：/*  任意字符串都可以访问-->
+        <url-pattern>/servlet/WordServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--使用context_get_remove-->
+    <servlet>
+        <servlet-name>context_get_remove</servlet-name>
+        <servlet-class>java01_servlet.context_get_remove</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>context_get_remove</servlet-name>
+        <url-pattern>/servlet/context_get_remove</url-pattern>
+        <!--获取 servlet信息-->
+    </servlet-mapping>
+
+
+    <!--商品goods-->
+    <servlet>
+        <!--<description></description>-->
+        <!--<display-name>AddServlet</display-name>-->
+        <servlet-name>AddServlet</servlet-name>
+        <servlet-class>goods.AddServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>AddServlet</servlet-name>
+        <url-pattern>/AddServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--计算器程序 HttpServlet-->
+    <servlet>
+        <servlet-name>CalculateServlet</servlet-name>
+        <servlet-class>calculator.CalculateServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>CalculateServlet</servlet-name>
+        <url-pattern>/CalculateServlet</url-pattern>
+    </servlet-mapping>
+
+    <!--<servlet>-->
+        <!--<servlet-name>DisplayChart</servlet-name>-->
+        <!--<servlet-class>org.jfree.chart.servlet.DisplayChart</servlet-class>-->
+    <!--</servlet>-->
+    <!--<servlet-mapping>-->
+        <!--<servlet-name>DisplayChart</servlet-name>-->
+        <!--<url-pattern>/servlet/DisplayChart</url-pattern>-->
+    <!--</servlet-mapping>-->
+</web-app>
+
+
+
